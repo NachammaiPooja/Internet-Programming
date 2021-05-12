@@ -1,0 +1,88 @@
+<html>
+<head>
+
+      <style>
+        	body
+        	{
+			  font-family: Monaco,Optima,"Courier New";
+			}
+                        
+                        h1
+                        {
+                          text-align: center;
+                          color:#990099;
+                          text-decoration:underline;
+                          text-shadow:3px 2px pink;
+                        }
+             
+			div
+			{
+			  width: fit-content;
+                          height: 80px;
+			  margin-left: auto;
+			  margin-right: auto;
+			}
+
+			form
+			{
+			  padding: 20px;
+			  background-color:#ff99ff;
+			}
+      
+                        .res{
+                              background-color: #b300b3;
+                              border-style: inset;
+                              color: white;
+                              padding: 9px;
+                              text-align: center; 
+                         } 
+    	</style>
+</head>
+<body>
+  
+<h1>CALCULATOR</h1>
+<div>
+<form method="get" action='calculator'>
+ Your First digit =
+ <input type="text" name="num1"><br><br>
+
+ Your Second digit =
+ <input type="text" name="num2"><br><br>
+Select Operator:
+ <select name="op">
+ <option value="Add">Add(+)</option>
+ <option value="Subtract">Subtract(-)</option>
+ <option value="Multiply">Multiply(*)</option>
+ <option value="Divide">Divide(/)</option>
+ <option value="Modulus">Modulus(%)</option>
+ <option value="Power">Power(^)</option>
+ </select><br><br>
+ <div>
+ <input type="button" class="res" id="cal"  value="Get  Result" onclick="calc(num1.value,num2.value,op.value)">
+ <input type="reset" class="res" value="Reset">
+ </div>
+ </form>
+
+<div id="result"> </div>
+<script>
+  
+    function calc(num1,num2,op){
+
+      var xmlhttp = new XMLHttpRequest();
+      console.log(xmlhttp);
+      
+    xmlhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        document.getElementById("result").innerHTML = "Answer: "+this.responseText;
+      }
+    };
+    xmlhttp.open("GET", "calculator?num1="+num1+"&num2="+num2+"&op="+op, true);
+    xmlhttp.send();
+        }
+
+  </script>
+
+
+</body>
+</html>
+
